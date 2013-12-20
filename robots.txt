@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://jbruni.github.io/sitemap.xml 
+Sitemap: http://www.jbruni.com.br/sitemap.xml 
