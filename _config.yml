@@ -3,9 +3,9 @@
 # ----------------------- #
 
 url: http://blog.jbruni.com.br
-title: J. Bruni
+title: J Bruni
 subtitle: Amor e Tecnologia
-author: J. Bruni
+author: J Bruni
 simple_search: http://google.com/search
 description: Desenvolvimento Web, Valores Humanos, Liberdade Financeira, Sathya Sai Baba, Santo Daime, Música, Aurora de um Novo Porvir
 
@@ -78,12 +78,12 @@ twitter_user: jbrunidev
 twitter_tweet_button: true
 
 # Google +1
-google_plus_one: false
+google_plus_one: true
 google_plus_one_size: medium
 
 # Google Plus Profile
 # Hidden: No visible button, just add author information to search results
-googleplus_user:
+googleplus_user: 109424533363076783413
 googleplus_hidden: false
 
 # Pinboard
@@ -100,6 +100,8 @@ disqus_show_comment_count: false
 
 # Google Analytics
 google_analytics_tracking_id:
+google_universal_analytics_tracking_id: UA-35480204-2
+google_universal_analytics_tracking_domain: jbruni.com.br
 
 # Facebook Like
 facebook_like: true

@@ -1,10 +1,20 @@
 <section class="about-me">
   <p>
     <br />
-    <a href="http://www.sencha.com/forum/showthread.php?102357-Extremely-Easy-Ext.Direct-integration-with-PHP"><img src="/images/jb_gravatar.jpg"></a>
-    <a href="http://pt-br.facebook.com/joao.bruni"><img src="/images/jb_facebook.jpg"></a>
-    <a href="http://www.youtube.com/user/sentindobem"><img src="/images/jb_google.jpg"></a>
-    <a href="http://en.wikipedia.org/wiki/User:Jbruni"><img src="/images/jb_twitter.jpg"></a>
-    <a href="http://en.wikipedia.org/wiki/White_hat_(computer_security)"><img src="/images/jb_blog.jpg"></a>
+    <a data-link="GitHub" alt="J Bruni no GitHub" href="http://github.com/jbruni"><img src="/images/jb_gravatar.jpg"></a>
+    <a data-link="Facebook" alt="J Bruni no Facebook" href="http://pt-br.facebook.com/joao.bruni"><img src="/images/jb_facebook.jpg"></a>
+    <a data-link="YouTube" alt="J Bruni no YouTube" href="http://www.youtube.com/user/sentindobem"><img src="/images/jb_google.jpg"></a>
+    <a data-link="Twitter" alt="J Bruni no Twitter" href="http://twitter.com/jbrunidev"><img src="/images/jb_twitter.jpg"></a>
+    <a data-link="Octopress" alt="Blog J Bruni" href="http://blog.jbruni.com.br"><img src="/images/jb_blog.jpg"></a>
+    <br />
   </p>
 </section>
+<script type="text/javascript">
+$(function(){
+  $('section.about-me a').hover(function(){
+    $(this).prepend($( '<span>' + $(this).attr('data-link') + '</span>' ));
+  }, function(){
+    $('span', this).remove();
+  });
+});
+</script>
