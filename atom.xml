@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[J. Bruni]]></title>
+  <title><![CDATA[J Bruni]]></title>
   <link href="http://blog.jbruni.com.br/atom.xml" rel="self"/>
   <link href="http://blog.jbruni.com.br/"/>
-  <updated>2013-12-22T17:12:02-02:00</updated>
+  <updated>2013-12-22T18:39:10-02:00</updated>
   <id>http://blog.jbruni.com.br/</id>
   <author>
-    <name><![CDATA[J. Bruni]]></name>
+    <name><![CDATA[J Bruni]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
