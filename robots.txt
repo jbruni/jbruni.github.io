@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://www.jbruni.com.br/sitemap.xml 
+Sitemap: http://blog.jbruni.com.br/sitemap.xml 

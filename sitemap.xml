@@ -1,19 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://www.jbruni.com.br/blog/2013/12/19/sathya-sai-baba/</loc>
-        <lastmod>2013-12-20T02:50:40-02:00</lastmod>
+        <loc>http://blog.jbruni.com.br/2013/12/19/sathya-sai-baba/</loc>
+        <lastmod>2013-12-22T17:10:44-02:00</lastmod>
     </url>
     <url>
-        <loc>http://www.jbruni.com.br/</loc>
-        <lastmod>2013-12-20T02:55:15-02:00</lastmod>
+        <loc>http://blog.jbruni.com.br/</loc>
+        <lastmod>2013-12-22T17:10:44-02:00</lastmod>
     </url>
     <url>
-        <loc>http://www.jbruni.com.br/blog/archives/</loc>
-        <lastmod>2013-12-20T02:54:56-02:00</lastmod>
+        <loc>http://blog.jbruni.com.br/blog/archives/</loc>
+        <lastmod>2013-12-22T17:10:44-02:00</lastmod>
     </url>
     <url>
-        <loc>http://www.jbruni.com.br/robots.txt</loc>
+        <loc>http://blog.jbruni.com.br/robots.txt</loc>
         <lastmod>2013-12-19T05:00:34-02:00</lastmod>
     </url>
 </urlset>
