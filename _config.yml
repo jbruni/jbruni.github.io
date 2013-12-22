@@ -2,12 +2,12 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://www.jbruni.com.br
+url: http://blog.jbruni.com.br
 title: J. Bruni
 subtitle: Amor e Tecnologia
 author: J. Bruni
 simple_search: http://google.com/search
-description: Desenvolvimento Web, Valores Humanos, Música, Liberdade Financeira, Imagem e Som, Sathya Sai Baba, Santo Daime
+description: Desenvolvimento Web, Valores Humanos, Liberdade Financeira, Sathya Sai Baba, Santo Daime, Música, Aurora de um Novo Porvir
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -28,12 +28,12 @@ email:
 
 # If publishing to a subdirectory as in http://site.com/project set 'root: /project'
 root: /
-permalink: /blog/:year/:month/:day/:title/
+permalink: /:year/:month/:day/:title/
 source: source
 destination: public
 plugins: plugins
 code_dir: downloads/code
-category_dir: blog/categories
+category_dir: categorias
 markdown: rdiscount
 rdiscount:
   extensions:
@@ -43,7 +43,7 @@ rdiscount:
 pygments: false # default python pygments have been replaced by pygments.rb
 
 paginate: 10          # Posts per page on the blog index
-pagination_dir: blog  # Directory base for pagination URLs eg. /blog/page/2/
+pagination_dir:       # Directory base for pagination URLs eg. /blog/page/2/
 recent_posts: 5       # Posts in the sidebar Recent Posts section
 excerpt_link: "Continuar leitura &rarr;"  # "Continue reading" link text at the bottom of excerpted articles
 
@@ -51,13 +51,17 @@ titlecase: true       # Converts page and post titles to titlecase
 
 # list each of the sidebar modules you want to include, in the order you want them to appear.
 # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
-default_asides: [asides/recent_posts.html, asides/github.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
+# default_asides: [asides/recent_posts.html, asides/github.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
+default_asides: [custom/asides/about.html, asides/recent_posts.html, asides/github.html, custom/asides/twitter.html, asides/googleplus.html]
 
 # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
 # and add an array with the asides you want to use.
 # blog_index_asides:
 # post_asides:
 # page_asides:
+
+category_title_prefix: "Categoria: "
+category_meta_description_prefix: "Categoria: "
 
 # ----------------------- #
 #   3rd Party Settings    #
@@ -70,7 +74,7 @@ github_show_profile_link: true
 github_skip_forks: true
 
 # Twitter
-twitter_user:
+twitter_user: jbrunidev
 twitter_tweet_button: true
 
 # Google +1
@@ -91,7 +95,7 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name:
+disqus_short_name: jbruni
 disqus_show_comment_count: false
 
 # Google Analytics

@@ -11,7 +11,7 @@ Verdadeiro Pai e Mãe Divinos
 
 Sathya Sai Baba é um homem santo. Nasceu em 23 de novembro de 1926, na Índia.
 
-Para quem não sabe, a pronúncia correta é "Sa**í**", como se houvesse um acento agudo na letra "i", ou como se fosse o pretérito do verbo "sair" na primeira pessoa do singular. A pronúncia deve considerar que são duas sílabas: "SA" - "Í". O significado de "Sai" é "maternidade sagrada" ou "mãe divina".
+Para quem não sabe, a pronúncia correta é "Sa**í**", como se houvesse um acento agudo na letra "i", ou como se fosse o pretérito do verbo "sair" na primeira pessoa do singular. A pronúncia deve considerar que são duas sílabas: "SA" - "Í". O significado de "Sai" é "maternidade sagrada" ou "mãe divina". <!--more-->
 
 A pronúncia correta de "Baba" deve prolongar mais a letra "A" do primeiro "BA"... como se fosse "BAABA". A duração do primeiro "A" é ligeiramente mais longa do que o segundo "A". O significado de "Baba" é "pai".
 
