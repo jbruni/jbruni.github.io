@@ -123,4 +123,27 @@ aside.sidebar {
       }
     }
   }
+  section.investir {
+    .img-container {
+      text-align: center;
+    }
+    img {
+      border-width: 0px;
+    }
+    hr {
+      opacity: 0.2;
+      margin-top: 1.17em;
+      margin-bottom: 1.17em;
+    }
+    strong {
+      display: inline-block;
+      margin-top: 0.1em;
+      margin-bottom: 0.3em;
+    }
+  }
 }
+
+.fb-comments { width: 100% !important; }
+.fb-comments iframe[style] { width: 100% !important; }
+.fb-comments span { width: 100% !important; }
+.fb-comments iframe span[style] { width: 100% !important; }

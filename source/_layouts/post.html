@@ -25,9 +25,15 @@ single: true
     </p>
   </footer>
 </article>
+{% if site.facebook_comments == true and page.comments == true %}
+  <section>
+    <h1>Comente pelo Facebook<span style="float: right; font-size: 72%; font-weight: normal">(Yahoo ou Hotmail também)</span></h1>
+    <div id="fb_thread" aria-live="polite">{% include post/fb_thread.html %}</div>
+  </section>
+{% endif %}
 {% if site.disqus_short_name and page.comments == true %}
   <section>
-    <h1>Comments</h1>
+    <h1>Comente pelo Disqus</h1>
     <div id="disqus_thread" aria-live="polite">{% include post/disqus_thread.html %}</div>
   </section>
 {% endif %}
