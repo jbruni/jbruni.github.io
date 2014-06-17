@@ -13,7 +13,7 @@ Selecionamos sua belíssima canção "**Relexos**" para inaugurar a seção de [
 Clique no botão "*play*" abaixo e tenha uma boa audição!
 
 {% soundcloud tracks 71905305 %}
-
+<!--more-->
 {% blockquote Nei Zigma http://neizigma.wix.com/nzigma#!__o----a-l-b-u-m/5.-reflexos Reflexos %}
 &nbsp;
 Quando te vejo
@@ -30,7 +30,7 @@ Mata a Sêde, Mata!!!
 Que nesse Rio 
 tem muita corrente elétrica
 e é preciso que tu saibas
-que relógio sempre dita
+que o relógio sempre dita
 que mais vale nesta vida
 viver o tempo que nos falta
 

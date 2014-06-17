@@ -69,7 +69,7 @@ Eu devo tomar?
 
 De novo, a resposta é **sim**. Se você está curioso, se você está em dúvida, se você quer experimentar, então eu o incentivo **sim** a conhecer o Santo Daime / Ayahuasca.
 
-**Porém**, após ter comungado da Ayahuasca com dezenas de grupos diferentes, o único grupo que eu me atrevo a recomendar publicamente é a [Linha Unificada](linhaunificada.blogspot.com.br), pois sabem muito bem o que estão fazendo.
+**Porém**, após ter comungado da Ayahuasca com dezenas de grupos diferentes, o único grupo que eu me atrevo a recomendar publicamente é a [Linha Unificada](http://linhaunificada.blogspot.com.br), pois sabem muito bem o que estão fazendo.
 
 Eu afirmei que Ayahuasca "é droga" e que "é perigosa", para que ninguém se atreva a experimentar sozinho, ou numa festa, ou de qualquer outra forma irresponsável. Não quero estimular isso de jeito nenhum. Mas não fiz essas afirmações com a intenção de amedrontar. Pelo contrário: entenda a Ayahuasca como "**um remédio forte**", ou seja, um medicamento que faz **muito bem** desde que seja seguida a **receita**, e que seja consumido sob a supervisão de alguém experiente. Assim como quero desestimular experiências indevidas com a Ayahuasca, quero também estimular o seu uso dentro das condições corretas. Porque o seu efeito é extremamente benéfico!
 
