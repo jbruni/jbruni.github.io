@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Categoria: Desenvolvimento Web | J Bruni]]></title>
+  <link href="http://blog.jbruni.com.br/categorias/desenvolvimento-web/atom.xml" rel="self"/>
+  <link href="http://blog.jbruni.com.br/"/>
+  <updated>2014-06-17T08:10:02-03:00</updated>
+  <id>http://blog.jbruni.com.br/</id>
+  <author>
+    <name><![CDATA[J Bruni]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Splendso.me - Um Projeto Open Source]]></title>
+    <link href="http://blog.jbruni.com.br/2014/06/15/splendsome/"/>
+    <updated>2014-06-15T18:32:40-03:00</updated>
+    <id>http://blog.jbruni.com.br/2014/06/15/splendsome</id>
+    <content type="html"><![CDATA[<p>Famo.us + Angular + Meteor = <a href="https://github.com/Splendsome/meteor-famous-angular">Splendso.me</a></p>
+
+<!-- more -->
+
+
+<p>Splendso.me integra o <strong>Famo.us/Angular</strong> ao <strong>Meteor</strong>, trazendo o melhor de três mundos:</p>
+
+<ul>
+<li><p><strong>Famo.us</strong> &ndash; nova biblioteca JavaScript para a criação de <strong>animações incríveis</strong> que rodam tanto no desktop quanto em qualquer dispositivo móvel, como se fossem nativas.</p></li>
+<li><p><strong>AngularJS</strong> &ndash; framework MVW front-end do Google, para criação de <strong>aplicações organizadas</strong>, separando o código em módulos, diretivas, controladores, serviços e escopo.</p></li>
+<li><p><strong>Meteor</strong> &ndash; plataforma client/cloud para criação de aplicações distribuídas <strong>em tempo real</strong>, compartilhando a mesma base de código JavaScript no cliente e no servidor.</p></li>
+</ul>
+
+
+<p>Com a união dessas três tecnologias revolucionárias, você pode:</p>
+
+<ul>
+<li><p>Criar componentes e animações do Famo.us usando diretivas do AngularJS.</p></li>
+<li><p>Fazer com que os modelos do AngularJS estejam globalmente sincronizadas através da plataforma client/cloud do Meteor.</p></li>
+<li><p>Focalizar na aplicação ao invés de código repetitivo gerenciando Ajax e REST, sem precisar usar $http, $resource ou outro mecanismo.</p></li>
+</ul>
+
+
+<h3>Leia mais nos site dos projetos:</h3>
+
+<ul>
+<li><a href="http://famo.us/angular">Famo.us/Angular</a></li>
+<li><a href="http://famo.us">Famo.us</a></li>
+<li><a href="http://angularjs.org">AngularJS</a></li>
+<li><a href="http://meteor.com">Meteor</a></li>
+</ul>
+
+
+<p>Estas bibliotecas e frameworks estão em ativo desenvolvimento.
+É possível criar aplicações estáveis e poderosoas,
+mas mudanças são esperadas na medida em que esses projetos avançarem.</p>
+
+<h2>Instalação rápida</h2>
+
+<ol>
+<li>Instalar o <a href="http://git-scm.com/downloads">git</a> <code>sudo apt-get install git</code> no Debian/Ubuntu ou <a href="http://git-scm.com/downloads">siga as instruções</a></li>
+<li>Instalar o <a href="http://docs.meteor.com/#quickstart">Meteor</a> <code>curl <a href="https://install.meteor.com">https://install.meteor.com</a> | /bin/sh</code></li>
+<li>Instalar o <a href="https://github.com/oortcloud/meteorite#installing-meteorite">Meteorite</a> <code>npm install -g meteorite</code></li>
+<li>Criar uma nova aplicação do Meteor usando <code>meteor create myapp</code> e/ou navegar para o diretório raiz da sua aplicação nova/existente.</li>
+<li>Incluir o pacote <a href="https://atmospherejs.com/package/ngMeteor">ngMeteor</a> <code>mrt add ngMeteor</code></li>
+<li>Incluir o pacote <a href="https://atmospherejs.com/package/famono">famono</a> <code>mrt add famono</code></li>
+<li>Incluir o pacote <a href="https://atmospherejs.com/package/splendsome">splendsome</a> <code>mrt add splendsome</code></li>
+</ol>
+
+
+<h2>Rodando (usando Splendso.me na sua aplicação Meteor)</h2>
+
+<p>Para liberar o poder deste fantástico combo, você precisa:</p>
+
+<ul>
+<li>Requerer <code>splendsome</code></li>
+<li>Usar o módulo <code>famous.angular</code> como uma dependência do seu próprio módulo do Angular</li>
+<li>Inserir seu módulo no ngMeteor</li>
+</ul>
+
+
+<p>Muito fácil:</p>
+
+<pre><code>if (Meteor.isClient)
+{
+  require('splendsome');
+  angular.module('myModule', ['famous.angular']);
+  ngMeteor.requires.push('myModule');
+}
+</code></pre>
+
+<p>E você pode começar a criar código como este diretamente em seus <em>templates</em>:</p>
+
+<p></p>
+
+<pre><code>&lt;template name="hello"&gt;
+
+  &lt;h1&gt;Hello World!&lt;/h1&gt;
+  &lt;p&gt;{{ greeting }}&lt;/p&gt;
+
+  &lt;input ng-model="text" /&gt;
+  &lt;p&gt;[[ text ]]&lt;/p&gt;
+
+  &lt;fa-app style="height: 200px"&gt;
+      &lt;fa-surface fa-background-color="'red'" fa-size="[108, 108]"&gt;
+          Hello world
+      &lt;/fa-surface&gt;
+  &lt;/fa-app&gt;
+
+&lt;/template&gt;
+</code></pre>
+
+<p></p>
+
+<p>Neste exemplo temos:</p>
+
+<ol>
+<li>um <em>template</em> com <em>live data</em> comum do Blaze / Spacebars (<a href="http://docs.meteor.com/#livehtmltemplates">leia mais</a>)</li>
+<li>uma utilização simples da diretiva ngModel provendo ligação de dados bidirecional (<a href="https://github.com/loneleeandroo/ngMeteor/#new-data-binding-to-avoid-conflict">leia mais</a>)</li>
+<li>uma diretiva de uma Superfície do Famo.us/Angular contendo &lsquo;Hello world&rsquo; com cor-de-fundo vermelha (<a href="http://famo.us/integrations/angular/docs/api/">leia mais</a>)</li>
+</ol>
+
+
+<h2>Divirta-se!</h2>
+]]></content>
+  </entry>
+  
+</feed>

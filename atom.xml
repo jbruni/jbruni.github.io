@@ -4,7 +4,7 @@
   <title><![CDATA[J Bruni]]></title>
   <link href="http://blog.jbruni.com.br/atom.xml" rel="self"/>
   <link href="http://blog.jbruni.com.br/"/>
-  <updated>2013-12-29T18:57:03-02:00</updated>
+  <updated>2014-06-17T08:10:02-03:00</updated>
   <id>http://blog.jbruni.com.br/</id>
   <author>
     <name><![CDATA[J Bruni]]></name>
@@ -12,6 +12,708 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Splendso.me - Um Projeto Open Source]]></title>
+    <link href="http://blog.jbruni.com.br/2014/06/15/splendsome/"/>
+    <updated>2014-06-15T18:32:40-03:00</updated>
+    <id>http://blog.jbruni.com.br/2014/06/15/splendsome</id>
+    <content type="html"><![CDATA[<p>Famo.us + Angular + Meteor = <a href="https://github.com/Splendsome/meteor-famous-angular">Splendso.me</a></p>
+
+<!-- more -->
+
+
+<p>Splendso.me integra o <strong>Famo.us/Angular</strong> ao <strong>Meteor</strong>, trazendo o melhor de três mundos:</p>
+
+<ul>
+<li><p><strong>Famo.us</strong> &ndash; nova biblioteca JavaScript para a criação de <strong>animações incríveis</strong> que rodam tanto no desktop quanto em qualquer dispositivo móvel, como se fossem nativas.</p></li>
+<li><p><strong>AngularJS</strong> &ndash; framework MVW front-end do Google, para criação de <strong>aplicações organizadas</strong>, separando o código em módulos, diretivas, controladores, serviços e escopo.</p></li>
+<li><p><strong>Meteor</strong> &ndash; plataforma client/cloud para criação de aplicações distribuídas <strong>em tempo real</strong>, compartilhando a mesma base de código JavaScript no cliente e no servidor.</p></li>
+</ul>
+
+
+<p>Com a união dessas três tecnologias revolucionárias, você pode:</p>
+
+<ul>
+<li><p>Criar componentes e animações do Famo.us usando diretivas do AngularJS.</p></li>
+<li><p>Fazer com que os modelos do AngularJS estejam globalmente sincronizadas através da plataforma client/cloud do Meteor.</p></li>
+<li><p>Focalizar na aplicação ao invés de código repetitivo gerenciando Ajax e REST, sem precisar usar $http, $resource ou outro mecanismo.</p></li>
+</ul>
+
+
+<h3>Leia mais nos site dos projetos:</h3>
+
+<ul>
+<li><a href="http://famo.us/angular">Famo.us/Angular</a></li>
+<li><a href="http://famo.us">Famo.us</a></li>
+<li><a href="http://angularjs.org">AngularJS</a></li>
+<li><a href="http://meteor.com">Meteor</a></li>
+</ul>
+
+
+<p>Estas bibliotecas e frameworks estão em ativo desenvolvimento.
+É possível criar aplicações estáveis e poderosoas,
+mas mudanças são esperadas na medida em que esses projetos avançarem.</p>
+
+<h2>Instalação rápida</h2>
+
+<ol>
+<li>Instalar o <a href="http://git-scm.com/downloads">git</a> <code>sudo apt-get install git</code> no Debian/Ubuntu ou <a href="http://git-scm.com/downloads">siga as instruções</a></li>
+<li>Instalar o <a href="http://docs.meteor.com/#quickstart">Meteor</a> <code>curl <a href="https://install.meteor.com">https://install.meteor.com</a> | /bin/sh</code></li>
+<li>Instalar o <a href="https://github.com/oortcloud/meteorite#installing-meteorite">Meteorite</a> <code>npm install -g meteorite</code></li>
+<li>Criar uma nova aplicação do Meteor usando <code>meteor create myapp</code> e/ou navegar para o diretório raiz da sua aplicação nova/existente.</li>
+<li>Incluir o pacote <a href="https://atmospherejs.com/package/ngMeteor">ngMeteor</a> <code>mrt add ngMeteor</code></li>
+<li>Incluir o pacote <a href="https://atmospherejs.com/package/famono">famono</a> <code>mrt add famono</code></li>
+<li>Incluir o pacote <a href="https://atmospherejs.com/package/splendsome">splendsome</a> <code>mrt add splendsome</code></li>
+</ol>
+
+
+<h2>Rodando (usando Splendso.me na sua aplicação Meteor)</h2>
+
+<p>Para liberar o poder deste fantástico combo, você precisa:</p>
+
+<ul>
+<li>Requerer <code>splendsome</code></li>
+<li>Usar o módulo <code>famous.angular</code> como uma dependência do seu próprio módulo do Angular</li>
+<li>Inserir seu módulo no ngMeteor</li>
+</ul>
+
+
+<p>Muito fácil:</p>
+
+<pre><code>if (Meteor.isClient)
+{
+  require('splendsome');
+  angular.module('myModule', ['famous.angular']);
+  ngMeteor.requires.push('myModule');
+}
+</code></pre>
+
+<p>E você pode começar a criar código como este diretamente em seus <em>templates</em>:</p>
+
+<pre><code>&lt;template name="hello"&gt;
+
+  &lt;h1&gt;Hello World!&lt;/h1&gt;
+  &lt;p&gt;{{ greeting }}&lt;/p&gt;
+
+  &lt;input ng-model="text" /&gt;
+  &lt;p&gt;[[ text ]]&lt;/p&gt;
+
+  &lt;fa-app style="height: 200px"&gt;
+      &lt;fa-surface fa-background-color="'red'" fa-size="[108, 108]"&gt;
+          Hello world
+      &lt;/fa-surface&gt;
+  &lt;/fa-app&gt;
+
+&lt;/template&gt;
+</code></pre>
+
+<p>Neste exemplo temos:</p>
+
+<ol>
+<li>um <em>template</em> com <em>live data</em> comum do Blaze / Spacebars (<a href="http://docs.meteor.com/#livehtmltemplates">leia mais</a>)</li>
+<li>uma utilização simples da diretiva ngModel provendo ligação de dados bidirecional (<a href="https://github.com/loneleeandroo/ngMeteor/#new-data-binding-to-avoid-conflict">leia mais</a>)</li>
+<li>uma diretiva de uma Superfície do Famo.us/Angular contendo &lsquo;Hello world&rsquo; com cor-de-fundo vermelha (<a href="http://famo.us/integrations/angular/docs/api/">leia mais</a>)</li>
+</ol>
+
+
+<h2>Divirta-se!</h2>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[EVH - Educação Em Valores Humanos]]></title>
+    <link href="http://blog.jbruni.com.br/2014/01/05/evh-educacao-em-valores-humanos/"/>
+    <updated>2014-01-05T23:56:00-02:00</updated>
+    <id>http://blog.jbruni.com.br/2014/01/05/evh-educacao-em-valores-humanos</id>
+    <content type="html"><![CDATA[<p>Do macaco ao <em>homo sapiens</em>&hellip; a <strong>evolução</strong> do ser humano terminou?</p>
+
+<p>Testemunhamos <strong>proezas</strong> admiráveis nos campos das manifestações artísticas, dos avanços tecnológicos e das pesquisas científicas. As <strong>conquistas</strong> e quebras de barreiras na esfera intelectual são evidentes. A <strong>expansão</strong> do conhecimento sobre a mecânica do universo &ndash; bem como a aplicação prática desse conhecimento &ndash; influenciam o nosso dia-a-dia e o modo como opera a nossa sociedade. Isto é irrefutável.</p>
+
+<p>No entanto, é igualmente evidente que, por outro lado, o desenvolvimento de <strong>outros potenciais humanos</strong> não acompanhou o mesmo passo e intensidade.</p>
+
+<p>Gratidão, respeito, reverência, humildade, gentileza, bondade, honestidade. Verdade, retidão, paz, amor, não-violência. Compaixão, entusiasmo, perdão, cordialidade. Tolerância, compreensão, contentamento, altruísmo. Felicidade, tranquilidade, satisfação, simplicidade. Beatitude, iluminação, castidade, sabedoria. Dedicação, desapego, discernimento, disciplina, devoção, caridade.</p>
+
+<p>Muitas vezes, parece que essas aulas ficaram de fora do currículo.</p>
+
+<!--more-->
+
+
+<h2>Duas Asas Para Voar</h2>
+
+<p>Você já viu algum pássaro voando com uma asa só?</p>
+
+<p><img class="center" src="http://blog.jbruni.com.br/images/valores-humanos/uma-asa.jpg" title="Uma Asa Só" ></p>
+
+<p>Associamos a inteligência à cabeça, e o amor ao coração.</p>
+
+<p>Quando a <strong>educação</strong> privilegia o aspecto mecânico e utilitário (<strong>cabeça</strong>) e despreza o aspecto moral e espiritual (<strong>coração</strong>), o resultado é uma sociedade que reflete esse mesmo padrão. Criamos um &ldquo;pássaro de uma asa só&rdquo;. Uma sociedade criada desse modo jamais irá manifestar todo o seu potencial latente.</p>
+
+<p>O que acontece? Doutrinado em uma perspectiva egoísta e competitiva, o indivíduo é <strong>treinado em &ldquo;modo de guerra&rdquo;</strong>. Ele precisa vencer os obstáculos. Vencer a competição. Ser o melhor. Ganhar. Tudo e todos são os seus inimigos. E o inimigo precisa ser destruído &ndash; assim como nos <em>video games</em>.</p>
+
+<p>Como bem canta Tom Zé:</p>
+
+<blockquote><p>O rico hoje, coitado, <br/>É preso, todo cercado <br/>Arrodeado de grades <br/>Porteiro, guarda e alarme <br/> <br/>Arranje, Senhor, um porto <br/>Que ele não esteja acuado <br/>Com um pouco de conforto <br/>Pra ele estar sossegado</p><footer><strong>Tom Zé</strong> <cite><a href='https://www.youtube.com/watch?v=Z9pnWc6pAP8'>Tangolomango</a></cite></footer></blockquote>
+
+
+<p>Estender as mãos? Ajudar o próximo? Sacrificar-se em prol do bem-estar geral? <strong>Essa asa não foi muito bem desenvolvida.</strong> Está atrofiada.</p>
+
+<p>Assim, o pássaro Humanidade não pode voar.</p>
+
+<p><strong>Uma asa bate firme e forte.</strong> A educação material, racional, analítica, aritmética e metódica definiu seu escopo, alimentou-se, fortificou-se e triunfou.</p>
+
+<p>Isso não é ruim.</p>
+
+<p>O problema é que <strong>a outra asa jaz paralítica</strong>. Parece inerte, estatelada ao chão. A educação espiritual, moral, sensível, intuitiva e amorosa ficou de fora, vive de migalhas, é ridicularizada e estagnou.</p>
+
+<p>Se <strong>as duas asas batessem juntas e fortes</strong> &ndash; o que poderíamos manifestar aqui neste Planeta? Quem tem cabeça e coração para criar e imaginar se entusiasma com a viva visão de um mundo regenerado. Para alguns, o próprio Paraíso.</p>
+
+<p><img class="center" src="http://blog.jbruni.com.br/images/valores-humanos/voando1.jpg" title="Voando" ></p>
+
+<h2>Humano ou Não Humano? &ndash; Eis a Questão</h2>
+
+<p>Entre as causas dos grandes problemas, conflitos e crises no mundo hoje, sem dúvida está essa falta de <strong>Nutrição do Coração</strong>.</p>
+
+<p>E do que trata a <strong>Educação em Valores Humanos</strong>? É justamente dessa <strong>Formação do Caráter</strong>.</p>
+
+<p>Para que uma &ldquo;asa material&rdquo; forte, se <strong>o coração é um deserto</strong> onde a gratidão não existe nem em oásis?</p>
+
+<p><strong>Para que tanta ciência?</strong> Só para construir bombas?</p>
+
+<p><strong>Para que tanto dinheiro?</strong> Só para manter uma mídia que hipnotiza e desinforma, escravizando a mente e a opinião do povo? Só para ocultar, suprimindo até o esquecimento, quaisquer iniciativas de bem em todas as áreas &ndash; economia, energia, saúde, alimentação, construção, transporte &ndash; calando-as ou marginalizando-as?</p>
+
+<p>Governo e sociedade <strong>mutuamente se refletem</strong>, espelhando falta de ética, falta de solidariedade, falta de sinceridade, falta de tolerância, falta de compreensão.</p>
+
+<p>Uma pessoa <strong>verdadeiramente educada</strong>, no sentido integral (cabeça + coração), estará imune à corrupção. Não abrirá mão de princípios essenciais, vendendo sua honra e integridade por qualquer preço.</p>
+
+<p>Mas <strong>aonde se ensinam Valores Humanos</strong>? Na escola, a educação de uma asa só. Na televisão, a imoralidade e a violência como se fossem coisas normais e cotidianas. Na religião, ode à intolerância. Na política, quem é mais corrupto recebe mais. Na vida, o trabalhador honesto é mal pago, a bandidagem corre solta. Na economia, um &ldquo;aspirador de pó&rdquo; sugando toda a riqueza e mandando para um buraco negro bem distante (a conta bancária de um punhado de famílias que dá para contar nos dedos).</p>
+
+<p>Com todos estes &ldquo;exemplos&rdquo;&hellip; não é de se surpreender a <strong>falta de educação</strong> que se mostra claramente em abundância aos olhos de quem ainda tem discernimento para enxergar.</p>
+
+<p>Mesmo assim, em todas as áreas mencionadas, dos bancos às escolas, das ruas aos lares, temos pessoas &ndash; muitas pessoas, e cada vez mais pessoas &ndash; que <strong>foram amadas o suficiente</strong> (obrigado, mamãe e papai) e são conscientes o suficiente para <strong>cultivar a moralidade</strong> em si mesmas&hellip; e plantar boas sementes em cada pensamento, palavra e ação.</p>
+
+<p><img class="center" src="http://blog.jbruni.com.br/images/valores-humanos/voando2.jpg" width="630" height="467" title="Voando" ></p>
+
+<h2>A Felicidade</h2>
+
+<p>Um dos temas mais importantes na <strong>Educação em Valores Humanos</strong> é a Felicidade.</p>
+
+<p>Você é feliz?</p>
+
+<p>Bom&hellip; você acha que é importante ser feliz?</p>
+
+<p>Felicidade existe? É um mito? É apenas um estado passageiro?</p>
+
+<blockquote><p>O prazer é o intervalo entre duas dores.
+A dor é o intervalo entre dois prazeres.</p></blockquote>
+
+<p>Experimentamos <strong>prazer</strong> e <strong>dor</strong>. <strong>Tristeza</strong> e <strong>alegria</strong>. Nos tornamos mais maduros quando aprendemos que essa alternação é natural. Há quem busque o equilíbrio ao cultivar uma atitude de não se desesperar com um revés, nem se exacerbar com um sucesso.</p>
+
+<p>É igualmente natural o ser humano dirigir suas ações em busca da <strong>felicidade</strong>. É uma meta comum, por mais diferentes que sejam os meios e as perspectivas. Excepcionalmente, um indivíduo pode cessar essa busca &ndash; considerando-se fracassado. Mas até esse momento de &ldquo;desistência&rdquo; ou &ldquo;revolta&rdquo;, seus esforços eram no sentido da <strong>felicidade</strong>.</p>
+
+<p>Seja temporária ou permanente, a &ldquo;felicidade&rdquo; é o &ldquo;<strong>sentido da vida</strong>&rdquo;. Com isso eu quero dizer: <strong>ser feliz</strong> é a <strong>meta</strong> que todo ser humano almeja, de uma forma ou de outra (ainda que possa desistir dessa meta em algum momento, caracterizando uma patologia).</p>
+
+<h2>Aprendendo a ser feliz</h2>
+
+<p>Temos aulas de matemática, de física, de geografia, de história, podemos até ter aula de francês! Mas não temos aula de felicidade, ou de &ldquo;ser feliz&rdquo;.</p>
+
+<p><strong>Pense bem</strong>: vale a pena uma &ldquo;ciência&rdquo; que não fala nem sabe nada sobre coisas invisíveis, impalpáveis e imensuráveis como a &ldquo;felicidade&rdquo; e o &ldquo;amor&rdquo;? Nada contra a ciência&hellip; só que falta uma asinha a ela&hellip; falta uma certa vibração de alegria e humanidade nessa &ldquo;cabeça dura&rdquo;&hellip;</p>
+
+<p><img class="center" src="http://blog.jbruni.com.br/images/valores-humanos/voando3.jpg" title="Voando" ></p>
+
+<p>Com a palavra, o mestre sufi Hazrat Inayat Khan:</p>
+
+<blockquote><p>Falemos da felicidade. Uma pessoa pensa que será feliz se o amigo for bom, quando os outros lhe correspondem, quando fica rico, mas não é essa a maneira de ser feliz. Às vezes tudo isso leva a um resultado contrário. A infelicidade faz uma pessoa culpar os outros, porque acha que todo mundo a está impedindo de ser feliz. Na realidade isso não é verdade. A verdadeira felicidade não é coisa que se ganhe, é uma coisa que se descobre. Felicidade é propriedade do homem. É por isso que anseia por felicidade. O que afasta o homem da felicidade é quando ele fecha as portas do seu coração. Quando o coração não está vivo, a felicidade não existe. Muitas vezes o coração não está completamente vivo, está parcialmente vivo. Há pessoas que ficam à espera da chegada de um outro coração que bata com o seu, mas a vida verdadeira do coração é a vida independentemente da sua própria felicidade, que se obtém através da realização espiritual, quando mergulhamos fundo dentro do nosso coração.</p><p>Aquele que encontrou paz interior, quer esteja numa caverna nas montanhas ou no meio da multidão, encontrará paz em toda parte. O que em geral acontece é que dizemos que não temos paz porque os outros afetam nossos nervos. Culpamos os outros, mas na realidade a verdadeira paz só pode ser estabelecida dentro de nós quando nos sentirmos firmes e seguros contra todas as influências existentes à nossa volta, só quando as coisas não mais nos perturbarem.</p></blockquote>
+
+
+<p>Em outras palavras:</p>
+
+<p>Beber Coca-Cola não vai te deixar feliz. Vai te deixar diabético. Pode te dar uma viciante satisfação sensorial. E você pode ter sido inconscientemente <strong>doutrinado pela propaganda</strong> a pensar que isso é felicidade pra valer.</p>
+
+<p>Basicamente, o fato é que o homem <strong>É</strong> a própria felicidade. Portanto, <strong>descobri-la</strong> é mesmo uma jornada de <strong>auto-conhecimento</strong> e <strong>auto-realização</strong>. Não é preciso ir a lugar nenhum nem conquistar nada, exceto a <strong>si mesmo</strong>.</p>
+
+<p>Com a palavra, o mestre humanitário Sathya Sai Baba:</p>
+
+<blockquote><p>O homem é um buscador da felicidade. Ele é essencialmente o próprio repositório da felicidade. Mas incapaz de perceber essa verdade sobre si mesmo, o homem vai atrás de felicidade pelo mundo afora.</p><p>Ele investe em estudo na crença de que escolaridade irá lhe trazer felicidade. Mas a felicidade escapa dele. Ele tenta encontrar felicidade no trabalho e falha em obtê-la. Buscando felicidade na vida conjugal, ele encontra desapontamento. Nem mesmo consegue obtê-la de seus filhos. Ele então se absorve na aquisição de riqueza na crença de que prosperidade irá lhe garantir meios de alcançar felicidade. No fim de tudo, ele se encontra como uma lamentável criatura quando a riqueza que adquiriu é roubada ou má utilizada por sua libertina progênie.</p><p>Ele então percebe que todos os seus esforços anteriores em assegurar felicidade lhe trouxeram apenas satisfações temporárias mas nenhuma felicidade permanente. Um homem rico se comporta como um cachorro numa manjedoura. Ele não irá usufruir de sua riqueza e nem irá dá-la para boas causas. Um homem rico deveria perceber que o sacrifício deveria ser a marca de um homem próspero e que a verdadeira felicidade deve ser adquirida através do sacrifício.</p></blockquote>
+
+
+<p>Ambos os pronunciamentos citados são apenas fragmentos, pequenas pinceladas de um vasto corpo de conhecimento que compõe a <strong>asa faltante</strong> &ndash; a <strong>Educação em Valores Humanos</strong> &ndash; o ensino espiritual.</p>
+
+<p>(Sathya Sai prossegue nesse discurso detalhando em seguida as cinco causas que levam o homem a falhar na conquista da felicidade. Hazrat Khan, por sua vez, prossegue indicando como vida, poder, conhecimento, felicidade e paz podem ser alcançados.)</p>
+
+<p><img class="center" src="http://blog.jbruni.com.br/images/valores-humanos/amor.jpg" title="Voando" ></p>
+
+<h2>EVH na Sala de Aula</h2>
+
+<p>O professor precisa <strong>estar consciente de seu papel</strong> de <strong>moldar o caráter</strong> dos estudantes.</p>
+
+<p>E para isso precisa <strong>praticar os valores</strong> que deseja transmitir.</p>
+
+<p>Dentre todos, estes são os cinco <strong>Valores Humanos</strong> destacados como principais:</p>
+
+<ul>
+<li>Verdade</li>
+<li>Retidão</li>
+<li>Paz</li>
+<li>Amor</li>
+<li>Não-Violência</li>
+</ul>
+
+
+<p>Existem algumas <strong>técnicas didáticas</strong> específicas para se reforçar o florescer desses valores inerentes, já presentes como sementes em cada estudante. As técnicas são:</p>
+
+<ul>
+<li>Harmonização</li>
+<li>Citação</li>
+<li>Contação de Histórias</li>
+<li>Canto Grupal</li>
+<li>Dinâmica em Grupo</li>
+</ul>
+
+
+<p>Basicamente, tudo se resume a isto. A superfície é bem simples, porém o que vale aqui é a profundidade. Cada um dos <strong>cinco valores</strong> e das <strong>cinco técnicas</strong> é um universo.</p>
+
+<p>Estas técnicas se aplicam a qualquer conteúdo, matéria ou disciplina. <strong>Não há necessidade de se alterar a grade curricular.</strong> A abordagem e metodologia da EVH pode ser aplicada em qualquer tipo de escola, integra-se a qualquer linha pedagógica, seja qual for a cultura e a religião do local.</p>
+
+<p><img class="center" src="http://blog.jbruni.com.br/images/valores-humanos/evh.jpg" width="232" height="239" title="Valores Humanos" ></p>
+
+<p>É fundamental que <strong>o professor tenha amor</strong> pelo seu trabalho e pelos seus estudantes, senão teremos hipocrisia ao invés de EVH.</p>
+
+<p>Portanto, a transformação começa com o corpo docente, que primeiro precisa ser <strong>despertado</strong> para sua própria importância e &ldquo;missão&rdquo;.</p>
+
+<p>Uma vez iniciado e colocado em movimento, este &ldquo;<strong>círculo virtuoso</strong>&rdquo; envolve os alunos e começa a transformar os próprios pais em seus lares.</p>
+
+<p>A <strong>Educação em Valores Humanos</strong> é assim efetiva quando corretamente aplicada.</p>
+
+<p>Este artigo é apenas uma pincelada, uma breve menção e introdução, somente para despertar o interesse sobre o assunto. Para mim, a EVH é maravilhosa e fascinante. Penso que não há nada mais importante e eficaz nos dias de hoje do que uma educação movida pelo Amor &ndash; o seu poder transformador é imenso e intenso.</p>
+
+<blockquote><p>A pessoa verdadeiramente educada é aquela que usa seu conhecimento para o benefício dos outros.</p></blockquote>
+
+
+<p>Sejam felizes!</p>
+
+<hr />
+
+<h4>Dedicatória</h4>
+
+<p>Dedico este <em>post</em> a três amigos que não vejo faz tempo: Rodrigo Reis (ETESP), Fernando Sallum (UFSCar) e Vinícius Santos Rocha (Linha Unificada).</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Aurora De Um Novo Porvir]]></title>
+    <link href="http://blog.jbruni.com.br/2014/01/01/aurora-de-um-novo-porvir/"/>
+    <updated>2014-01-01T17:27:01-02:00</updated>
+    <id>http://blog.jbruni.com.br/2014/01/01/aurora-de-um-novo-porvir</id>
+    <content type="html"><![CDATA[<h2>Um Filme que Nasce da Música</h2>
+
+<p><strong>Aurora de um Novo Porvir</strong> é um filme longa-metragem nacional.</p>
+
+<p>Seu roteiro vai ser co-criado colaborativamente na internet.</p>
+
+<p>A sua <strong>trilha sonora</strong> já está pronta.</p>
+
+<p>A partir dessa trilha sonora é que o filme será escrito e produzido.</p>
+
+<p>As músicas que foram selecionadas são todas nacionais. E a qualidade de todas é <strong>celestial</strong>! :&ndash;)</p>
+
+<iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/36042524&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_artwork=true&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+
+
+
+
+<!--more-->
+
+
+<p>(Clique em <em>view track</em> para ver os detalhes da faixa que estiver tocando.)</p>
+
+<h2>Começando</h2>
+
+<p>Este <em>blog</em> está sendo lançado hoje, <strong>17 de junho de 2014</strong>. Com este <em>post</em> estou apenas tornando pública esta ideia que, em minha cabeça, já está bem avançada, mas que como empreendimento está começando.</p>
+
+<p>A intenção é produzir um filme que é ao mesmo tempo humilde, modesto e despretensioso &ndash; e por outro lado profundo, intenso e transformador &ndash; nada menos do que <strong>inesquecível</strong>.</p>
+
+<p>A <strong>audição da trilha sonora</strong> é o primeiro passo para conhecer o projeto. Ela é a <strong>energia</strong> que o filme deseja transmitir. E a finalidade do filme nada mais é do que justamente espalhar e <strong>expandir</strong> essa energia pelo Brasil e pelo mundo afora.</p>
+
+<p>Nem só de pão vive o homem. Junto com alimentos, roupas, habitação, e outros bens materiais, é preciso alimentar também a mente, as emoções e os pensamentos. No âmbito da <strong>cultura</strong> e das <strong>artes</strong>, também temos a oportunidade de <strong>semear</strong> aquilo que queremos colher. Sem compreender isto, a oportunidade de plantar coisas boas no campo da cultura parece estar sendo desperdiçada.</p>
+
+<p>O filme, enquanto empreendimento, visa a satisfazer essa fome e <strong>preencher essa lacuna</strong>: se muitos brasileiros já não passam mais fome de alimentos, muitos permanecem <strong>famintos</strong> de compreensão, tolerância e amor.</p>
+
+<p>Com o <strong>sucesso comercial</strong> da obra, lançamos uma refrescante <strong>onda restauradora</strong> no astral desta nação.</p>
+
+<p>Portanto, a realização do projeto se dá simultaneamente em três frentes distintas e complementares:</p>
+
+<ul>
+<li><p>manter a <strong>sacralidade</strong>, a pureza espiritual que é a essência do empreendimento, sem a qual perde o seu valor
+&nbsp;</p></li>
+<li><p>produzir o <strong>filme</strong>, que é o produto principal do empreendimento, com a maior qualidade possível
+&nbsp;</p></li>
+<li><p>garantir o seu <strong>sucesso</strong> comercial, que é o veículo através do qual o empreendimento irá cumprir sua missão</p></li>
+</ul>
+
+
+<h2>Partilhando o Sonho</h2>
+
+<p>No final do ano passado, meu amigo Renato Sampaio me pediu que eu escrevesse sobre meus <strong><em>sonhos profissionais</em></strong>.</p>
+
+<p>Transcrevo a minha resposta, na íntegra, sem edições, abaixo.</p>
+
+<p>É importante lembrar que eu escrevi para um <strong>amigo</strong> &ndash; eu sinceramente não imaginava que iria publicar o conteúdo algum dia.</p>
+
+<hr />
+
+<p>&nbsp;</p>
+
+<p>&ldquo;Oh, sim, Mestre Terapeuta Zen, quero dizer, Ren,</p>
+
+<p>Permita-me que me sente ou deite aqui neste divã, a fim de transcrever tão saudável e estimulante reflexão incitada por vossas brilhantes colocações, em particular a solicitação de falar sobre os&hellip; escrever sobre os&hellip; discorrer sobre os&hellip; <strong>sonhos profissionais</strong>.</p>
+
+<p>Tenho sim sonhos profissionais. No plural. Não é um só. São vários. Sim, sim.</p>
+
+<p>Porém, dentre as várias incitações criativas que surgem em meus pensamentos, há uma que insiste em persistir com crescente força, a qual fico muito feliz e satisfeito em poder compartilhar convosco.</p>
+
+<p>Serás a terceira pessoa, criteriosamente selecionada, com a qual permito-me revelar tal sonho. Porém, caso haja verdadeira intenção em manifestar tal sonho concretamente, estou ciente de que deverei cessar este compartilhamento restrito, e expandir deveras o círculo de possíveis interessados.</p>
+
+<p>Pois bem: trata-se simplesmente de um <strong>filme</strong>, um longa-metragem, desses que podemos assistir nos cinemas comendo pipoca, ou no conforto da sala do nosso lar, através de um DVD, blu-ray, ou mesmo wi-fi.</p>
+
+<p>Este filme leva o título &ldquo;<strong>Aurora de um Novo Porvir</strong>&rdquo; e sua protagonista, uma bela jovem chamada <strong>Aurora</strong>, representa o tipo jovem urbano da grande cidade do mundo de hoje, acossado por um mundo aparentemente injusto e de poucas oportunidades, completamente alheio à espiritualidade. Ela sofre um profundo, tremendo processo de transformação pessoal &ndash; passando de uma atitude auto-destrutiva para uma positiva e corajosa batalhadora do bem, através de seu engajamento numa atividade simples porém cativante, a <strong>musicalização infantil</strong>.</p>
+
+<p>Toda a história de Aurora ainda está por ser (colaborativamente) escrita, porém suas cenas emocionantes vão perdurar na mente e nas emoções dos espectadores por muito tempo.</p>
+
+<p>A característica peculiar, única e fenomenal deste filme é a sua <strong>trilha sonora</strong>, composta de 19 músicas 100% (cem por cento) nacionais &ndash; compostas e executadas por brasileiros. A própria ideia do filme, a escrita de seu roteiro, sua estratégia de marketing, sua alma, e muito mais &ndash; surgem dessa trilha sonora. Repito mais uma vez o que acabo de dizer, pois não se trata de um detalhe marginal, mas sim o conceito mais importante do filme: pode-se arriscar a dizer que o filme é um mero acompanhamento, uma história em imagens que acompanha e ilustra a sua <strong>trilha sonora</strong>. Em suma: a origem e sistema nervoso central do filme é a sua&hellip; adivinhe&hellip; <strong>TRILHA SONORA</strong>.</p>
+
+<p>Agora que creio ter frisado suficientemente bem a importância dessa trilha sonora, saiba que ela já existe. Já está pronta. E você pode ouvi-la. Graças à sua solicitação, dei um pequeno passo adiante e coloquei os dezenove arquivos de áudio em formato MP3 para que outra pessoa, como você, possa saborear, <strong>sentir</strong> e começar a imaginar do que se trata&hellip; Com certeza, qualquer pessoa sensível que escute as músicas selecionadas terá uma reação emocional que não poderá ser desprezada.</p>
+
+<p>Link de acesso: <a href="https://www.dropbox.com/sh/m925h2pdxrqo3n2/ghfi6K4E4K">https://www.dropbox.com/sh/m925h2pdxrqo3n2/ghfi6K4E4K</a></p>
+
+<p>Caso seja possível, solicito que faça a audição de maneira minimamente concentrada. Não coloque como música de fundo para outra atividade. Escute-as absorvendo a energia e o significado de cada canção. São quase 80 minutos de duração. Imagine cenas. Com certeza, você terá um vislumbre do potencial da obra! Eu pessoalmente fico orgulhoso de que tamanha qualidade seja composta integralmente de composições <strong>nacionais</strong>. Se não for possível fazer uma audição assim &ldquo;solene&rdquo;, quase &ldquo;ritualística&rdquo;, então tudo bem &ndash; pode escutar de maneira descontraída também.</p>
+
+<p>Evidentemente, as músicas não serão todas integralmente executadas ao longo da &ldquo;película&rdquo;. Uma ou outra pode estar contida integralmente, até com destaque. Algumas passarão mais desapercebidas, apenas ambientando com um pequeno trecho instrumental. Não se trata de um musical, nem de uma coletânea de clipes. É um drama, um filme de ficção.</p>
+
+<p>Em meu sonho, o processo de <strong>produção</strong> do filme é o que menos consome atenção. Com profissionais capacitados e experientes, ordem, planejamento e capital &ndash; basta executar o <em>script</em>, o qual não contém nada extraordinariamente complexo ou intrinsecamente caro de se produzir. Pelo contrário. O que mais será exigido será o <em>coração</em> dos intérpretes &hellip;e as <em>vozes</em> das crianças&hellip;</p>
+
+<p>O que me anima, me entusiasma, me excita, é o que deve vir <strong>antes</strong> e <strong>depois</strong> da produção propriamente dita.</p>
+
+<p>Comecemos pelo <strong>depois</strong>: não me interessa fazer o filme se ninguém assistir. Antes de começar, já deve estar acertada distribuição com a <strong>Universal Pictures</strong> ou a <strong>Fox Filmes</strong> ou a <strong>Warner Brothers</strong> &ndash; a que estiver mais acordada para a oportunidade de grandes lucros. Deve estar acertada a exibição na <strong>Rede Globo</strong> de televisão. Deve estar acertada a publicação do CD e do DVD do filme, juntos ou separados. Deve estar engatilhada a produção de um passarinho de brinquedo chamado &ldquo;<strong>Sabiá</strong>&rdquo;, que é de pelúcia, e muito querido por uma das crianças do filme. Enfim: todo o sucesso comercial do filme deverá estar previamente programado. Como qualquer outro filme de sucesso, não será acidental. Na verdade, o filme é apenas uma estratégia de venda de sua trilha sonora &ndash; que vai mexer com velhos, adultos e crianças de todo o Brasil. Seus repertórios vão se popularizar, ser tocados nas rádios. Há que se preparar os clips, sim, para o canal do filme no YouTube &ndash; que terão milhares senão milhões de visualizações. Merecemos uma pequena paródia da &ldquo;Porta dos Fundos&rdquo;. Estes músicos e estas músicas deverão ser amplamente difundidos de Norte a Sul. Mesmo que alguém não veja o filme, inevitavelmente conhecerá alguma faixa de sua trilha sonora. Será uma nova onda musical&hellip; no passado tivemos &ldquo;Tropicália&rdquo;, tivemos&hellip; sei lá eu mais qual &ldquo;movimento&rdquo; ou &ldquo;momento&rdquo;&hellip; porém já faz tempos que estagnamos no sertanejo, no funk, na mesmice, e esta turma vem trazer uma nova e empolgante brisa de qualidade para o <em>mainstream</em>.</p>
+
+<p>No meu sonho, posso exagerar. Na realidade, ainda que sem exagero, deve ser assim como falei: antes mesmo de filmar a primeira cena, antes mesmo de começar a produção, todo o esquema de ampla distribuição e presença nos canais com grande <strong>poder de mídia</strong> devem estar engatilhados, o que torna a popularização do filme uma certeza, e não uma conquista. Se não estiver programada ampla distribuição internacional via Warner Brothers, nem precisamos filmar nada.</p>
+
+<p>Bom&hellip; fora a possibilidade de grandes lucros, o que é que vai despertar o interesse dos grandes em viabilizar essa realização? Evidentemente, os grandes lucros são a chave. No meu sonho, será <strong>fácil</strong> perceber a tremenda oportunidade de negócios, com risco zero de fracasso, para esses grandes. A qualidade da trilha sonora fala por si mesma. Os demais itens que <strong>antecedem</strong> a produção deverão ter o mesmo nível de qualidade. Com o &ldquo;projeto&rdquo; do filme como eu o sonho, não tem grande empresário para o qual não fique evidente o potencial do produto.</p>
+
+<p>Daí advém a parte mais interessante e maravilhosa de todo esse sonho: o que vem <strong>antes</strong> da produção. Esta é a parte inédita. Esta é a parte &ldquo;revolucionária&rdquo;. Esta é a parte onde ele se distancia de qualquer &ldquo;filme&rdquo; que já tenha sido produzido até então.</p>
+
+<p>Em geral, um pequeno grupo de pessoas com interesses próprios cria o projeto e, privadamente, luta pelos recursos de produção, e se dá por satisfeito quando, meramente, o produto é realizado.</p>
+
+<p>No meu sonho, a produção é irrelevante, é simples. O que importa é a distribuição e divulgação, o potencial comercial, a popularização em massa. Mas não pela popularização em si&hellip; enquanto os lucros interessam aos empresários&hellip; não tenho interesse em lucrar&hellip; na verdade, vou ficar muito feliz que eles lucrem bastante&hellip; meu interesse é no expandir da mensagem do filme, na música que ele carrega&hellip; esta será a minha realização.</p>
+
+<p>Tem mais ingredientes que garantem esse &ldquo;sucesso nacional&rdquo;, como você verá. Na verdade, você vai <strong>entender</strong> que ou o filme <strong>é</strong> esse sucesso, ou ele nem tem mesmo possibilidade de existir.</p>
+
+<p>Mas, enfim, o diferencial na pré-produção está em dois fatores:</p>
+
+<ul>
+<li>1º &ndash; Colaborativo</li>
+<li>2º &ndash; Aberto</li>
+</ul>
+
+
+<p>Em geral, um filme se torna conhecido quando é lançado.</p>
+
+<p>No caso de &ldquo;<strong>Aurora de um Novo Porvir</strong>&rdquo;, o roteiro será elaborado pela internet, e qualquer pessoa que queira interagir com a sua construção poderá fazê-lo. De modo que, ainda em fase de criação, já irá gradualmente angariando interessados&hellip; antes mesmo de haver qualquer cena filmada, já teremos seguidores, toda uma comunidade em volta, decidindo os altos e baixos, o destino de cada personagem, o ângulo de cada tomada de cena, as frases de cada diálogo.</p>
+
+<p>Evidentemente, os próprios artistas, e seus fãs, estarão interessados no sucesso do empreendimento. Mas só Deus sabe o quanto esse círculo poderá se expandir&hellip; ecologistas e ambientalistas? professores e educadores? guerreiros do arco-íris e sementes estelares?</p>
+
+<p>O que torna o filme um sucesso de antemão é o seu <strong>elenco</strong>&hellip; a começar pela minha prima, que por coincidência é a atriz global mais famosa e talentosa de todos os tempos, a <strong>Lília Cabral</strong>. Ela será a mãe da protagonista. O pai será <strong>Jackson Antunes</strong>. Quem vai ser a Aurora vai ser a <strong>Letícia Persiles</strong>. E isso é só começo! Veja: <a href="https://trello.com/b/yTcHS4O7/aurora-o-filme">https://trello.com/b/yTcHS4O7/aurora-o-filme</a> (Além do Trello, há outra ferramenta colaborativa online bem interessante, chamada Murally&hellip; <a href="http://mrl.li/18Aqbm1">http://mrl.li/18Aqbm1</a>)</p>
+
+<p>Bom, Ren, agradeço a oportunidade de fazer <strong>ren</strong>ascer em mim a lembrança desse anseio, <strong>re</strong>viver o entusiasmo e <strong>ren</strong>ovar a motivação necessária para, quem sabe, mover essa ideia adiante. Agora você faz parte do projeto. Prepare-se!</p>
+
+<p>Opa&hellip; peraí&hellip; por um momento esqueci que é só um sonho&hellip;</p>
+
+<p>E agora? O que eu faço com isso?</p>
+
+<p>Aceite minhas humildes reverências. Tens minha gratidão. Espero poder conhecer vosso lar à Antonio de Lima sem demora. Irei informar-lhe com antecedência, quando porventura encontrar-me em São Paulo novamente.</p>
+
+<p>Sem mais para o momento, subzkrevo-me, atêmssiozamẽnte,</p>
+
+<p>Jrs Boh</p>
+
+<hr />
+
+<p>&nbsp;</p>
+
+<p>Esse <em>e-mail</em>, acima, foi escrito há seis meses atrás. Está um pouco comprido para um <em>post</em> de apresentação, mas creio que expressa bem os meus sinceros anseios, por isso acabei copiando na íntegra.</p>
+
+<p>Gostou? Deixe um comentário.</p>
+
+<p>Depois eu escrevo mais. Até a próxima!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Um Novo Sistema Bancário]]></title>
+    <link href="http://blog.jbruni.com.br/2013/12/30/um-novo-sistema-bancario/"/>
+    <updated>2013-12-30T14:31:41-02:00</updated>
+    <id>http://blog.jbruni.com.br/2013/12/30/um-novo-sistema-bancario</id>
+    <content type="html"><![CDATA[<h2>Tirania Financeira</h2>
+
+<p>É muito importante compreender os mecanismos que regem o <strong>sistema financeiro internacional</strong> nos dias de hoje. Infelizmente, não é possível resumir o assunto.</p>
+
+<ul>
+<li>Como é criado o <strong>dinheiro</strong>?</li>
+<li>Como funcionam os <strong>bancos</strong>?</li>
+<li>Por que existe pobreza e <strong>miséria</strong>?</li>
+<li>Qual a importância da <strong>corrupção</strong>?</li>
+<li>Por que existem as <strong>guerras</strong>?</li>
+<li>É possível compreender as <strong>crises</strong> econômicas?</li>
+<li>A <strong>escassez</strong> é real? Ou existe uma <strong>abundância de recursos</strong> que é restringida por regulações que concentram renda e poder?</li>
+</ul>
+
+
+<!--more-->
+
+
+<p>A questão financeira me desperta muito interesse. Ao longo dos últimos anos, <strong>pesquisei bastante</strong> sobre o assunto.</p>
+
+<p>Hoje, na era da internet, é muito fácil obter informações que há pouco tempo exigiriam um bocado de esforço. Por exemplo&hellip; qual o <strong>orçamento do governo brasileiro para o ano 2014</strong>? Num piscar de olhos, através de uma simples pesquisa, obtemos desde os documentos oficiais até comentários em noticiários e blogs. Certamente, <strong>discernimento</strong> é requerido para separar o joio do trigo entre fatos, opiniões, boatos e mentiras. Devido à facilidade de se publicar na internet, encontramos material de todos os níveis de qualidade e fidedignidade.</p>
+
+<p>Eu tenho um profundo anseio em <strong>compartilhar tudo que aprendi</strong>. É possível achar <strong>respostas</strong> para as questões lançadas. Mesmo que falte uma compreensão mais profunda, é possível sim <strong>compreender a essência</strong> do <em>modus operandi</em> do mecanismo que atualmente está em funcionamento no mundo, hoje.</p>
+
+<p>Estar ciente do histórico de como este quadro veio a se formar é fundamental para essa compreensão. Por isso, um dos melhores materiais para esse entendimento é o documentário entitulado &ldquo;<strong>Os Mestres do Dinheiro</strong>&rdquo; (<em>The Money Masters</em>). É uma excelente aula de história com três horas e meia de duração. A qualidade das legendas em português deixa muito a desejar, mas ainda assim vale muito a pena:</p>
+
+<iframe id="ytplayer" type="text/html" src="https://www.youtube.com/embed/tAhWtKIt5nA" frameborder="0" allowfullscreen></iframe>
+
+
+<p>Temos aí uma excelente <strong>aula inaugural</strong> de um curso que pode ir muito, muito mais além!</p>
+
+<p>A cada dia que passa mais conteúdo didático é disponibilizado, promovendo <strong>conscientização</strong> e explicando a situação. Esse conteúdo já é abundante na língua inglesa. Infelizmente, ainda existe pouco material em português. A qualidade das traduções é sofrível. E muitas vezes o conteúdo aparece em <em>sites</em> de credibilidade questionável. Eu sinto vontade de traduzir parte desse conteúdo para o português &ndash; é fascinante! E é importante.</p>
+
+<p>Porém, por mais que eu seja tentado a me fixar na análise e comentário do <strong>sistema que atualmente governa as finanças</strong>, meu interesse maior é outro.</p>
+
+<h2>Liberdade Financeira</h2>
+
+<p>O estudo nos permite entender a natureza do sistema financeiro atual, e as ligações entre corrupção, guerras, pobreza, controle da criação do dinheiro, o papel dos bancos e governos nas crises econômicas, e o fato contundente de que, efetivamente, a escassez atual é engendrada, quando todos poderiam usufruir de uma <strong>plenitude de recursos</strong> &ndash; a qual é tiranicamente restringida por regulações que concentram renda e poder.</p>
+
+<p>Esse estudo e essa compreensão são fundamentais. O meu interesse maior, no entanto, é em vislumbrar um <strong>outro sistema</strong> em funcionamento.</p>
+
+<p>Temos no <strong>sistema bancário</strong> atual <em>ferramentas</em> que dão suporte à injusta concentração de renda e à &ldquo;escravidão disfarçada&rdquo; em operação hoje.</p>
+
+<p>Um outro <strong>sistema financeiro</strong>, uma <strong>economia</strong> operando de maneira <strong>diferente</strong> e apoiando outros princípios é possível?</p>
+
+<p><img class="center" src="http://blog.jbruni.com.br/images/liberdade-financeira/break_chains.jpg" title="Quebrando Amarras" ></p>
+
+<p>A resposta certamente é <strong>SIM</strong>, claro que sim!</p>
+
+<p>Não somente é possível, como também <strong>necessário e imprescindível</strong> para que haja a reversão da tendência atual, que é <strong>insustentável</strong> e culmina na <strong>extinção</strong> dos recursos naturais que sustentam a própria vida no planeta. Quando o lucro e a ganância falam mais alto do que a vida e a moralidade, o <strong>resultado</strong> é o que podemos testemunhar hoje: vale derrubar florestas, poluir rios e construir usinas nucleares, se houver lucro a curto prazo &ndash; mesmo que coloque em perigo a própria sobrevivência.</p>
+
+<p>Quando descobrimos que é o <strong><em>design</em> do sistema</strong> que promove e sustenta a competição e o consumo exacerbado &ndash; sacrificando o futuro em prol de ganhos imediatos &ndash; começamos a compreender e vislumbrar modos alternativos de articular e operar a economia.</p>
+
+<p>Assim o meu foco de atenção e interesse passou a ser o desenvolvimento de um <strong>novo sistema bancário</strong>, que ao invés de dar suporte à atual <strong>tirania financeira</strong>, possa promover a <strong>liberdade financeira</strong>.</p>
+
+<p>Com a mudança no <strong>foco</strong> da <strong>pesquisa</strong> &ndash; de &ldquo;<strong><em>compreender o sistema atual</em></strong>&rdquo; para &ldquo;<strong><em>empreender um novo sistema</em></strong>&rdquo;, passei a tomar conhecimento das iniciativas existentes.</p>
+
+<h2>NESARA</h2>
+
+<p>Se já podemos encontrar muitos <em>insights</em> e explicações sobre o sistema atual, por outro lado quase <strong>não encontramos soluções</strong>. Ao compreender o mecanismo atual e analisar os seus defeitos, ficamos sabendo como ele <strong>não deve funcionar</strong>, porém a resposta a <strong>como deve funcionar</strong> é muito vaga, esparsa.</p>
+
+<p>Como uma exceção, temos o <strong>NESARA</strong> &ndash; <strong><em>National Economic Stabilization and Recovery Act</em></strong> ou &ldquo;<strong>Ato Nacional de Estabilização e Recuperação Econômica</strong>&rdquo;.</p>
+
+<p>O NESARA se apresenta como uma <strong>proposta</strong> claramente formulada, com começo, meio e fim, e disponível publicamente como um documento, num formato passível de ser &ldquo;aprovado pelo governo&rdquo; (norte-americano). A proposta do NESARA foi criada no final dos anos 80 e começo dos anos 90. Seu autor, Harvey Francis Barnard, faleceu em 2005.</p>
+
+<p><img class="center" src="http://blog.jbruni.com.br/images/liberdade-financeira/nesara.jpg" title="NESARA" ></p>
+
+<p>Estudando a proposta, logo fica evidente que as suas intenções e propósitos são maravilhosos e louváveis! Porém, na minha opinião, NESARA não é a resposta efetiva por vários motivos:</p>
+
+<ul>
+<li>Trata muito especificamente do cenário dos Estados Unidos;</li>
+<li>Requer uma adoção <em>top-down</em>, ou seja, depende que o governo o adote e implemente (sendo que eu acredito numa solução <em>bottom-up</em>, isto é, que seja primeiro abraçada pela população e comprovada a sua eficácia, para apenas num passo posterior ser oficializada);</li>
+<li>O documento é relativamente longo (88 páginas) e excessivamente técnico, dificultando a sua compreensão e restringindo deveras a possibilidade de um debate público sobre o mesmo;</li>
+<li>A sua autoria é de uma única pessoa; a leitura revela uma mistura de boas ideias com algumas idiossincrasias.</li>
+</ul>
+
+
+<p>Além disso, há outros problemas:</p>
+
+<ul>
+<li>A proposta foi indevidamente vinculada a assuntos que originalmente não tinham conexão com a mesma: desde contatos extraterrestres até supostas canalizações de Mestres Ascensionados da Fraternidade Branca;</li>
+<li>Por ser de difícil compreensão, por ter sido anunciada como <strong>a solução</strong> definitiva, e por ter sido aceita por alguns como sendo essa solução (meramente pela força do anúncio), NESARA de certo modo travou a discussão sobre o assunto financeiro.</li>
+</ul>
+
+
+<p>Percebe o problema? Muitos apenas repercutiram, repetindo e anunciando o NESARA como sendo a solução para os problemas econômicos, mas ficando somente no aguardo de sua implementação, <strong>passivamente</strong>, e desse modo cessando o esforço direcionado à elaboração de outras possíveis alternativas, propostas e soluções &ndash; ou mesmo novas versões aprimoradas.</p>
+
+<p>Em <a href="http://www.pathwaytoascension.com/nesarahistory.html">artigo de Nancy Detweiler</a>, o NESARA é louvado como sendo efetivamente a lei que irá mudar o rumo da história no planeta! Eu não descarto qualquer possibilidade. Ao mesmo tempo, não pretendo cessar o estudo e o vislumbre de outras alternativas por causa disso.</p>
+
+<p>Ficar passivamente <em>esperando</em> o NESARA não contribui para melhorar a situação.</p>
+
+<p>Definitivamente, há amplo espaço para investigação e ação, e não é necessário um diploma de economia para agir. (Na verdade, um diploma de economia é um atestado de ter sido doutrinado em ideias que não funcionam, mais do que qualquer outra coisa.)</p>
+
+<h2>Bitcoin</h2>
+
+<p>O fenômeno do <strong>Bitcoin</strong> dá muito o que pensar. Enquanto eu preparava este artigo, <a href="http://exame.abril.com.br/tecnologia/noticias/bitcoin-compra-hamburgueres-apos-lojas-adotarem-moeda">a revista Exame publicava sobre o assunto</a>.</p>
+
+<p>O Bitcoin é uma <strong>moeda digital</strong>, um dinheiro que nasceu e cresceu na internet. Surgiu em 2008 e gradualmente expandiu sua presença, sendo primeiramente aceito como forma de pagamento em algumas lojas virtuais, mas sendo cada vez mais aceito no comércio em geral.</p>
+
+<p>O Bitcoin não é controlado por <strong>nenhum governo</strong> ou banco central. Se a sua ideia fosse descrita ou anunciada <strong>antes</strong> da sua implementação, quer dizer, <strong>antes</strong> de se tornar realidade, pareceria um mero devaneio ou loucura para a grande maioria. Porém, o que vemos hoje é uma valorização e expansão cada vez maior dessa moeda que nasceu virtual.</p>
+
+<p><img class="center" src="http://blog.jbruni.com.br/images/liberdade-financeira/bitcoin.png" title="Bitcoin" ></p>
+
+<p>É também um fenômeno <strong><em>bottom-up</em></strong>, no sentido de ter começado a partir da iniciativa de um programador, adotado por um círculo restrito, e que gradualmente foi se ampliando, na medida em que o conceito provava ser eficiente. Ou seja, não foi algo imposto &ldquo;de cima para baixo&rdquo;, a partir de um governo ou outra instituição central.</p>
+
+<p>Dessa maneira, o Bitcoin prova que não convém se sentir impotente para criar algo novo, inventar uma <strong>alternativa ao sistema</strong> que aí está. O Bitcoin mostra que não somente é possível trazer mudança, mas também que as pessoas estão querendo uma opção que as liberte das algemas opressoras da atual &ldquo;ditadura bancária&rdquo;.</p>
+
+<p>Nesse sentido, no universo da informática, o sistema operacional <strong>Linux</strong> é outra demonstração do mesmo padrão: uma iniciativa individual, que recebeu o apoio de um grupo, o qual foi se expandindo&hellip; até se tornar um movimento que transformou radicalmente a indústria do <em>software</em>, e por que não dizer, o rumo da História!</p>
+
+<h2>Bancos Comunitários e Moedas Sociais</h2>
+
+<p>O <strong>Banco Palmas</strong> foi fundado em 1998. Hoje, mais de 15 anos depois, a trilha que abriu como pioneiro, o caminho que já percorreu, e a estrada que tem adiante são excepcionais. Desde 2002, a moeda social <strong>Palmas</strong> circula na região do Conjunto Palmeiras, em Fortaleza, Ceará.</p>
+
+<p><img class="center" src="http://blog.jbruni.com.br/images/liberdade-financeira/moeda_social_palmas.jpg" title="Palmas" ></p>
+
+<p><strong>Moedas alternativas</strong>, de circulação restrita a determinado local ou comunidade, com regras de funcionamento diferenciadas (notadamente a <strong>ausência de &ldquo;juros&rdquo;</strong>), são um elemento comum a vários esforços de implementar uma <strong>economia alternativa</strong>, no Brasil e no mundo. Através de pesquisa, encontramos histórias de fracasso bem como de tremendo sucesso na implementação de moedas locais.</p>
+
+<p>O mérito do Banco Palmas é estruturar e solidificar uma história de sucesso, onde não há conflito entre a operação da <strong>moeda social</strong> e os demais agentes da economia tradicional.</p>
+
+<p><img class="center" src="http://blog.jbruni.com.br/images/liberdade-financeira/moeda_social_capivari.jpg" title="Capivari" ></p>
+
+<p>Em 2005, a Secretaria Nacional de Economia Solidária firmou uma parceria com o Banco Palmas para difundir <strong>bancos comunitários</strong> em outras localidades.</p>
+
+<p>Com um governo federal voltado ao social, a abertura às iniciativas da <strong>Economia Solidária</strong> vêm frutificando, e hoje já temos mais de uma centena de bancos comunitários no Brasil &ndash; operando de forma legalizada, não só amparada pela lei como também fomentada pelo Ministério do Trabalho e Emprego.</p>
+
+<p><img class="center" src="http://blog.jbruni.com.br/images/liberdade-financeira/moeda_social_idea.jpg" title="Idea" ></p>
+
+<p>Notavelmente, uma delegação do governo da Venezuela, incluindo o então Ministro da Economia Popular daquele país, veio em 2004 observar a experiência brasileira de economia solidária e fechar parcerias nesta área. Algum tempo depois, o governo venezuelano convidou a direção do Banco Palmas para ir a Caracas, onde deve ter havido a transmissão da metodologia de desenvolvimento comunitário do Banco Palmas aos representantes do poder público daquele país. Em 2009, a Venezuela já tinha nada menos de 3.600 bancos comunitários. (fonte: <a href="http://portal.mte.gov.br/data/files/8A7C812D3ADC4216013AFAE0DA6514F7/FINAN%C3%87AS%20SOLID%C3%81RIAS%20E%20MOEDA%20SOCIAL.pdf">Finanças Solidárias e Moeda Social &ndash; Paul Singer, 2009</a>)</p>
+
+<p>O que tais empreendimentos revelam são a viabilidade e o sucesso em operar um sistema de trocas baseado em <strong>satisfação das necessidades</strong> (necessidades básicas, reais) ao invés da <strong>maximização dos lucros</strong>.</p>
+
+<p><img class="center" src="http://blog.jbruni.com.br/images/liberdade-financeira/moeda_social_sabia.jpg" title="Sabiá" ></p>
+
+<p>A <em>implementação</em> de uma <strong>economia local</strong>, com <strong>gestão comunitária</strong>, focalizada no <strong>desenvolvimento social</strong>, através de ferramentas como a <strong>moeda social</strong> e o <strong>banco comunitário</strong> e dos princípios da <strong>economia solidária</strong> é um <em>evento</em> ainda &ldquo;marginal&rdquo;, com pequeno destaque e desconhecido da maioria da população. Todavia, inspiram caminhos promissores com <a href="http://g1.globo.com/pi/piaui/noticia/2014/02/sem-agencia-bancaria-cidade-do-piaui-cria-banco-local-e-moeda-propria.html">histórias reais de sucesso</a>. Princípios essenciais de um Novo Sistema estão aí.</p>
+
+<p>Na medida em que a experiência for mostrando as receitas e ingredientes que dão certo, bem como os perigos e erros a evitar, e um corpo de conhecimento mais amplo mais prático continuar se formando, vamos ter uma fundação sólida na qual basear experimentações futuras mais abrangentes, em maior escala.</p>
+
+<p><img class="center" src="http://blog.jbruni.com.br/images/liberdade-financeira/moeda_social_vista_linda.jpg" title="Vista Linda" ></p>
+
+<p>No final de 2013, a moeda social <strong>Mumbuca</strong> foi lançada no município de Maricá, Rio de Janeiro. É a primeira moeda social eletrônica do país (todas as transações são por cartão &ndash; não há notas impressas em papel). Conforme <a href="http://www.bancopalmas.org.br/oktiva.net/1235/nota/162600">noticiado no site do Banco Palmas</a>:</p>
+
+<blockquote><p>É uma das maiores inovações no Campo das Finanças Solidárias e um dos mais criativos programas municipais de distribuição de renda nos últimos 10 anos no Brasil.</p></blockquote>
+
+<p><img class="center" src="http://blog.jbruni.com.br/images/liberdade-financeira/cartao_mumbuca.png" title="Cartão Mumbuca" ></p>
+
+<p>Embora possamos testemunhar novos mecanismos financeiros em ação nos bancos comunitários, penso que sua importância maior está em apontar o caminho. Eles ilustram e validam na realidade como algumas práticas dão resultados concretos. Não é somente teoria.</p>
+
+<p>Com essa experiência e esse histórico, temos fundação e aval, temos suporte para alavancar projetos cada vez melhores nesta direção.</p>
+
+<p>O fato é que o diferencial fundamental, certamente, é na esfera <strong>ética/moral</strong>: a tal da &ldquo;solidariedade&rdquo;. <em>A priori</em>, ninguém se propõe a levantar um banco comunitário com fins lucrativos. É a necessidade da comunidade empobrecida que é satisfeita por uma instituição desse gênero.</p>
+
+<p>Uma economia local, auto-gerida pela comunidade, visando ao seu próprio bem-estar é algo completamente diferente de uma economia &ldquo;alienígena&rdquo;, que chega e se instala, suga as riquezas locais, e as remete para o outro lado do planeta &ndash; sem chance de se fazer nada contra o abuso, a não ser submeter-se.</p>
+
+<h2>Economia Sagrada</h2>
+
+<p>Eis que para minha surpresa e profunda satisfação, minha pesquisa culmina na descoberta da obra de <a href="http://charleseisenstein.net">Charles Eisenstein</a>. Minha ansiedade em relação ao assunto econômico terminou quando encontrei seu livro &ldquo;<a href="http://sacred-economics.com/">Economia Sagrada</a>&rdquo;.</p>
+
+<p>Profundo conhecedor dos detalhes e complexidades dos modelos teóricos mais proeminentes no campo acadêmico da Economia, sem negligenciar o valor das contribuições que outras ciências e culturas ao redor de todo o planeta podem oferecer &ndash; da Física Quântica à Ecologia, dos nômades aos indígenas, da Sociologia à Psicologia. Com uma visão extremamente clara, integral e crítica sobre a narrativa que a História costuma tecer a nosso respeito, e com a capacidade ímpar de traduzir seu pensamento de maneira brilhante, simples e coerente ao escrever, Charles Eisenstein destaca-se como o autor e pensador atual que conseguiu conectar todos os pontos de maneira completa e correta, no que se refere ao significado do dinheiro e sua utilização.</p>
+
+<p>Em seu livro Economia Sagrada, Charles Eisenstein não somente descreve na perspectiva mais acertada a atual crise e seu futuro (e inevitável) desenvolvimento, bem como apresenta uma série de soluções práticas, pontuais e realizáveis. O que é extraordinário e entusiasmente é que as soluções são conclusões científicas e magnificamente certeiras. É um alívio e uma alegria tomar conhecimento de que o &ldquo;conserto&rdquo; do lastimável cenário em que a economia mundial se encontra &ndash; em termos <strong>práticos</strong>, é tão&hellip; <strong>simples</strong>!</p>
+
+<p><a href="http://sacred-economics.com/wp-content/uploads/2012/01/sacred-economics-book-text.pdf">A busca pela resposta terminou.</a></p>
+
+<iframe id="ytplayer" type="text/html" src="https://www.youtube.com/embed/EEZkQv25uEs" frameborder="0" allowfullscreen></iframe>
+
+
+<p>Charles Einsenstein já fez o trabalho mais difícil para todos nós. Bem&hellip; não sei se é o mais difícil ou não; sei que eu me prostro com reverência perante a sua capacidade intelectual e brilhantismo em destrinchar a complexidade do assunto em seus elementos básicos e apresentar os remédios acertados para cada sintoma.</p>
+
+<p>Imagine que a &ldquo;economia&rdquo; vai ao &ldquo;médico&rdquo;, que a &ldquo;examina&rdquo;, faz o &ldquo;diagnóstico&rdquo;, e dá a &ldquo;receita&rdquo;. Em Economia Sagrada, Charles Eisentein nos fornece esse &ldquo;diagnóstico&rdquo; e essa &ldquo;<strong>receita</strong>&rdquo;.</p>
+
+<p>Agora, com a receita em mãos&hellip; o que vamos fazer? Vamos seguir? Tomar o medicamento conforme prescrito? O próximo desafio é tirar a receita do papel e implementá-la.</p>
+
+<p>Não é pequeno esse desafio&hellip;</p>
+
+<p>Primeiro, é preciso tomar conhecimento da obra. Segundo, é preciso compreender e concordar que suas propostas correspondem efetivamente às medidas que precisam ser tomadas. Terceiro, é preciso ter o poder, a autoridade e a competência em se implementar as medidas sugeridas. E, por fim, é preciso efetivá-las na realidade, executando-as.</p>
+
+<p><img class="left" src="http://blog.jbruni.com.br/images/liberdade-financeira/economia_sagrada.jpg" title="Economia Sagrada" ></p>
+
+<p>Eu estou aguardando a disponibilização da tradução da obra em português (em andamento), para iniciar um grupo de estudos, aqui em Uberlândia. Na sequência de passos, como vimos, a educação/instrução é o começo. Assim nos capacitamos e passamos a influenciar quem tem o poder de colocar as mudanças em prática.</p>
+
+<p>Essa obra exerce um poder mágico de tremendo otimismo em mim &ndash; mesmo sendo extremamente objetiva e realista em suas considerações sobre o calamitoso estado atual das forças, digamos, &ldquo;ignorantes&rdquo; que governam o mundo.</p>
+
+<p>Essa magia vem da contemplação da beleza do que pode ser criado a partir do momento em que &ndash; pelo amor ou pela dor &ndash; a lição da <strong>não-separatividade</strong> de tudo for aprendida, a ponto de ser refletida até mesmo nas práticas financeiras.</p>
+
+<p>Se por um lado o aspecto <strong>racional/intelectual</strong> do homem desenvolveu-se de forma admirável, por outro lado o aspecto <strong>moral/espiritual</strong> ficou em estado &ldquo;atrofiado&rdquo; ou infantil. É necessário compreender que a derrota do outro é seu próprio fracasso, e a vitória do outro é também o seu próprio sucesso.</p>
+
+<p>Esse é o tipo de conhecimento que uma pessoa cega pelo materialismo nunca irá possuir, permanecendo envolta em seu &ldquo;véu de trevas&rdquo; até o fim de seus dias. Felizmente, se do macaco chegamos ao <em>homo sapiens</em>&hellip; basta essa evolução prosseguir mais um pouco para que essa visão primitiva que o (quase) &ldquo;homem&rdquo; tem hoje torne-se coisa do passado.</p>
+
+<p>Porém&hellip; eu estou sendo injusto com o livro. Se o meu discurso assumiu o tom de &ldquo;lição de moral&rdquo;, o livro Economia Sagrada não é assim: ele satisfaz altos requisitos acadêmicos, analisa com objetividade e em detalhes as questões <strong>técnicas</strong> de como trazer a atual economia &ndash; frenética e psicopática por lucro e crescimento &ndash; para outra economia &ndash; humana e respeitosamente a serviço do planeta e de seus habitantes.</p>
+
+<p>É fabuloso, e superior a tudo o mais que encontrei!</p>
+
+<p>Portanto: a solução já está aí.</p>
+
+<p><img class="right" src="http://blog.jbruni.com.br/images/liberdade-financeira/cortinas.jpg" title="Um Novo Espetáculo" ></p>
+
+<p>Assim como temos outra medicina, outra alimentação, outros meios de gerar eletricidade, temos até mesmo motores movidos à água&hellip; enfim: temos verdadeiramente outro mundo e outra cultura já prontos nos bastidores e esperando sua vez de entrar em cena&hellip; Temos também outra economia!</p>
+
+<p>Enquanto o <em>show</em> da <em>ganância</em> e do <em>egoísmo</em> com que os negócios são conduzidos atualmente perdurar, a cada &ldquo;ensaio&rdquo; que essas realidades alternativas fazem nos bastidores, elas vão se aperfeiçoando e amadurecendo. Em seu devido tempo, a atual &ldquo;apresentação&rdquo; irá terminar, dando espaço para um novo espetáculo começar.</p>
+
+<h2>Minha Contribuição</h2>
+
+<p>Eu sou programador de computador. Atualmente, desenvolvo aplicações <em>web</em> usando tecnologias de ponta. Que ponta? Utilizo versões das novidades que nem sequer foram lançadas ainda, pois acompanho o desenvolvimento do próprio código <em>open source</em> daquilo que vai ser lançado amanhã! Graças a Deus, me comunico em inglês sem dificuldade.</p>
+
+<p>Já tive (e tenho) a honra e o privilégio de trabalhar para causas humanitárias, utilizando essa tecnologia em prol de objetivos nobres. O <em>slogan</em> deste <em>blog</em>, &ldquo;Amor e Tecnologia&rdquo; refere-se justamente à utilização dos avanços tecnológicos de maneira humanitária.</p>
+
+<p>Sinceramente falando, enquanto eu pude, voluntariei 100% do meu tempo em serviços dessa natureza. Não estou brincando, nem exagerando.</p>
+
+<p><img class="left" src="http://blog.jbruni.com.br/images/liberdade-financeira/com_fome.jpg" width="356" height="241" title="Com Fome" ></p>
+
+<p>Em relação a uma <strong>nova economia</strong>, tenho muitas ideias e projetos em mente. Esbocei algumas delas: <strong><em>starving.com</em></strong> &ndash; uma aplicação web cujo objetivo é fazer chegar alimento a quem está em condição de miséria absoluta; <strong><em>IOCR</em></strong> (Ideia, Orçamento, Captação, Realização) &ndash; outra aplicação web, que é uma ferramenta para gerenciamento de projetos humanitários, com foco no fluxo de recursos financeiros para a realização eficaz e verificável das ações; <strong><em>Sanjeevini Online</em></strong> &ndash; transformando dispositivos móveis em aparelhos de cura radiestésica&hellip;</p>
+
+<p><img class="center" src="http://blog.jbruni.com.br/images/liberdade-financeira/alimentando.jpg" title="Alimentando" ></p>
+
+<p><img class="right" src="http://blog.jbruni.com.br/images/liberdade-financeira/sem_fome.jpg" width="356" height="243" title="Sem Fome" ></p>
+
+<p>&hellip;e, principalmente, penso muito em <strong>um novo sistema bancário</strong> &ndash; um novo <em>software</em> para rodar em <strong>bancos</strong>, tanto internamente quanto na web, abrangendo desde a experiência do usuário em dispositivos móveis até o banco de dados das transações&hellip;</p>
+
+<p>Considere tudo o que foi mencionado anteriormente: NESARA, Bitcoin, Moedas Sociais e Bancos Comunitários (LETS), Economia Sagrada&hellip; minha paixão é fazer o <em>design</em> e a implementação tecnológica &ndash; especificamente a parte de T.I. (<strong>Tecnologia da Informação</strong>), ou seja, o <em>software</em>, de 1ª qualidade, para operacionalizar todo esse ideal.</p>
+
+<p>Em minha criatividade, também imagino jovens utilizando seus dispositivos móveis para ações sociais dirigidas por um sistema (uma aplicação web, sim, distribuída e em tempo real, usando geolocalização) com fortes componentes de <em>gamificação</em>, <em>UX</em> de 1ª categoria (<em>top notch</em>), numa plataforma altamente transparente (<em>open source</em>), possivelmente mantendo a própria base de dados aberta (para leitura). Uma plataforma como essa precisará ser gerida por uma instituição já existente ou especialmente criada para esse fim (seja governamental, ONG, OSCIP, Fundação, ou outra modalidade).</p>
+
+<p>As atuais formas em que as transações financeiras acontecem, no meu olhar, são obsoletas. São primitivas &ndash; tipo do homem das cavernas&hellip; aquele que fricciona um pauzinho no outro a fim de obter fogo. É assim ultrapassado o sistema que <strong>atualmente usamos</strong>, da perspectiva tecnológica.</p>
+
+<p>Em suma: eu me sentiria verdadeiramente realizado em utilizar meus talentos em seu máximo potencial &ndash; desenvolvendo <em>software</em> de ponta para ampla utilização e com finalidade humanitária/social, engajando a população &ldquo;dos 8 aos 80&rdquo; em atividades nobres, produzindo e fazendo a produção fluir de maneira ótima &ndash; de onde os recursos abundam para onde os mesmos recursos são necessários &ndash; seja água potável, seja alimento, seja roupa, seja dinheiro, seja o que for. Em especial, gostaria de escrever o <em>software</em> para operacionalizar as finanças de um &ldquo;Banco 2.0&rdquo; &ndash; um banco a serviço da sociedade, e não do lucro pelo lucro.</p>
+
+<p><img class="center" src="http://blog.jbruni.com.br/images/liberdade-financeira/celulares.jpg" title="Dispositivos Móveis" ></p>
+
+<p>Pensamos em <em>software</em> para entretenimento, para trocar mensagens, para automatizar ou facilitar processos que já existiam anteriormente. Não estamos acostumamados a pensar em <em>software</em> como uma ferramenta criadora de novas realidades.</p>
+
+<p>Com certeza o <strong>potencial social do <em>software</em></strong> é um campo virgem, inexplorado. Das <em>start-ups</em> (empresas novas e inovadoras) aos &ldquo;dinossauros&rdquo; (empresas grandes e tradicionais), o foco é <strong>comercial</strong>, de maximização de lucros. Não há investimento, suporte, ou apoio para pesquisa e inovação nessa área, de &ldquo;<strong>engenharia de finanças comunitárias</strong>&rdquo; suportadas por aplicações distribuídas.</p>
+
+<p>Quando essa minha parte &ldquo;visionária&rdquo; entra em ação, fico facilmente empolgado, entusiasmado e motivado. Essa tecnologia pode ser colocada em movimento para engajar, por exemplo, <strong>crianças plantando hortas</strong>! Num espírito de &ldquo;jogo&rdquo;, buscando conquistar pontos e passar de &ldquo;fase&rdquo;. O potencial é imenso, mas não vejo <em>nada</em> sendo desenvolvido nessa direção. Vejo todos querendo ser o &ldquo;próximo <em>Facebook</em>&rdquo;, em termos de sucesso, com a ambição de ficar milionário o mais rapidamente possível.</p>
+
+<p>Certamente exagerei no parágrafo anterior. Com certeza existem muitas aplicações em <em>software</em> com intenções nobres também, sem que o único intento seja o lucro. O fato é que ainda não tomei conhecimento de nada parecido com o que imagino.</p>
+
+<h2>Considerações Finais</h2>
+
+<p>Há muito o que se aprender e se surpreender quando vamos compreendendo a lamentável <strong>história de nossa realidade econômica atual</strong>. Por exemplo, quando nos conscientizamos que as guerras mundiais, com suas matanças de homens, mulheres e crianças inocentes, foram realizadas basicamente como grandes negócios lucrativos.</p>
+
+<p>Mas de que adianta ficar contemplando com microscópio um organismo canceroso? Essa compreensão é muito importante, mas não resolve nada.</p>
+
+<p>Por isso, desde o NESARA, incluindo o Bitcoin, bem como Moedas Sociais e Bancos Comunitários, o espírito da Economia Solidária e a sabedoria da Economia Sagrada, entre outras iniciativas que não foram mencionadas, temos esforços em todo o planeta para <strong>construir uma outra estrutura econômica</strong>.</p>
+
+<p>Uma economia onde o maior valor é o ser humano. Que não seja baseada na ganância e na avareza.</p>
+
+<p><img class="center" src="http://blog.jbruni.com.br/images/liberdade-financeira/semeando.jpg" title="Semeando" ></p>
+
+<p>Expressei a minha paixão em contribuir com minha experiência profissional numa parte específica e inexplorada dessa questão: <strong>construir sistemas em <em>software</em> que sirvam de ferramentas</strong> úteis e práticas nessa construção, fomentando, gerando e suportando uma &ldquo;onda de serviço global&rdquo; que vise a despoluir e restaurar os estragos já infringidos ao nosso planeta Terra e sua população, trazendo mais equilíbrio, harmonia e prosperidade.</p>
+
+<p>É muito importante frisar que TODOS os pontos tocados neste artigo foram abordados de maneira <strong>extremamente superficial</strong>. Qualquer <em>expert</em> em reserva fracionária, NESARA, Bitcoin, Economia Solidária ou conhecedor da obra de Eisenstein saberá que eu meramente arranhei a superfície de cada um desses assuntos. Apenas mencionei suas existências com uma breve sinopse. Apenas compartilhei uma listagem de pontos da trajetória de minha própria pesquisa, deixando muita coisa de fora.</p>
+
+<p>Da mesma forma, apenas anunciei a existência de projetos e ideias próprias que eu gostaria de desenvolver, sem aprofundar nem detalhar nada.</p>
+
+<p>Eu não sei o que o futuro reserva. Estou muito feliz neste momento de estar finalmente conseguindo concluir este <em>post</em>. Obrigado por ter lido. Comentários gentis e construtivos são bem-vindos. Escreva e envie o seu comentário, abaixo.</p>
+
+<p><em>Loka Samastha Sukhino Bhavantu</em> &ndash; &ldquo;Que todos os seres, de todos os mundos, sejam felizes.&rdquo;</p>
+
+<p>Até a próxima.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Nei Zigma: Reflexos]]></title>
@@ -27,9 +729,10 @@
 <iframe width="100%" height="166" scrolling="no" frameborder="no" src="http://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F71905305&amp;"></iframe>
 
 
+<!--more-->
 
 
-<blockquote><p>&nbsp;<br/>Quando te vejo<br/>estás na frente de um espelho<br/>um vácuo de silêncio <br/>rompe as falas da multidão&#8230;<br/>Quando entra neste saguão do mundo a castanha-cor do teu espelho<br/>e assim a luz se torna<br/>música sussurrada<br/>como o leito d água<br/>do Rio das Almas&#8230;</p><p>Mata a Sêde, Mata!!!<br/>Que nesse Rio <br/>tem muita corrente elétrica<br/>e é preciso que tu saibas<br/>que relógio sempre dita<br/>que mais vale nesta vida<br/>viver o tempo que nos falta</p><footer><strong>Nei Zigma</strong> <cite><a href='http://neizigma.wix.com/nzigma#!__o----a-l-b-u-m/5.-reflexos'>Reflexos</a></cite></footer></blockquote>
+<blockquote><p>&nbsp;<br/>Quando te vejo<br/>estás na frente de um espelho<br/>um vácuo de silêncio <br/>rompe as falas da multidão&#8230;<br/>Quando entra neste saguão do mundo a castanha-cor do teu espelho<br/>e assim a luz se torna<br/>música sussurrada<br/>como o leito d água<br/>do Rio das Almas&#8230;</p><p>Mata a Sêde, Mata!!!<br/>Que nesse Rio <br/>tem muita corrente elétrica<br/>e é preciso que tu saibas<br/>que o relógio sempre dita<br/>que mais vale nesta vida<br/>viver o tempo que nos falta</p><footer><strong>Nei Zigma</strong> <cite><a href='http://neizigma.wix.com/nzigma#!__o----a-l-b-u-m/5.-reflexos'>Reflexos</a></cite></footer></blockquote>
 
 
 
@@ -99,7 +802,7 @@
 
 <p>De novo, a resposta é <strong>sim</strong>. Se você está curioso, se você está em dúvida, se você quer experimentar, então eu o incentivo <strong>sim</strong> a conhecer o Santo Daime / Ayahuasca.</p>
 
-<p><strong>Porém</strong>, após ter comungado da Ayahuasca com dezenas de grupos diferentes, o único grupo que eu me atrevo a recomendar publicamente é a <a href="linhaunificada.blogspot.com.br">Linha Unificada</a>, pois sabem muito bem o que estão fazendo.</p>
+<p><strong>Porém</strong>, após ter comungado da Ayahuasca com dezenas de grupos diferentes, o único grupo que eu me atrevo a recomendar publicamente é a <a href="http://linhaunificada.blogspot.com.br">Linha Unificada</a>, pois sabem muito bem o que estão fazendo.</p>
 
 <p>Eu afirmei que Ayahuasca &ldquo;é droga&rdquo; e que &ldquo;é perigosa&rdquo;, para que ninguém se atreva a experimentar sozinho, ou numa festa, ou de qualquer outra forma irresponsável. Não quero estimular isso de jeito nenhum. Mas não fiz essas afirmações com a intenção de amedrontar. Pelo contrário: entenda a Ayahuasca como &ldquo;<strong>um remédio forte</strong>&rdquo;, ou seja, um medicamento que faz <strong>muito bem</strong> desde que seja seguida a <strong>receita</strong>, e que seja consumido sob a supervisão de alguém experiente. Assim como quero desestimular experiências indevidas com a Ayahuasca, quero também estimular o seu uso dentro das condições corretas. Porque o seu efeito é extremamente benéfico!</p>
 
