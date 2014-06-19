@@ -4,7 +4,7 @@
   <title><![CDATA[J Bruni]]></title>
   <link href="http://blog.jbruni.com.br/atom.xml" rel="self"/>
   <link href="http://blog.jbruni.com.br/"/>
-  <updated>2014-06-17T08:10:02-03:00</updated>
+  <updated>2014-06-19T09:25:11-03:00</updated>
   <id>http://blog.jbruni.com.br/</id>
   <author>
     <name><![CDATA[J Bruni]]></name>
@@ -12,6 +12,22 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Empreendedor Social]]></title>
+    <link href="http://blog.jbruni.com.br/2014/06/19/empreendedor-social/"/>
+    <updated>2014-06-19T09:10:48-03:00</updated>
+    <id>http://blog.jbruni.com.br/2014/06/19/empreendedor-social</id>
+    <content type="html"><![CDATA[<p>Você tem uma ideia, uma visão, um sonho, um projeto para um mundo melhor? Talvez você seja um <strong>Empreendedor Social</strong>.</p>
+
+<p>Conheça algumas ideias que <strong>seguiram adiante</strong>, mesmo com os outros desencorajando e dizendo que era loucura ou perda de tempo&hellip;</p>
+
+<p>&ldquo;<strong>Quem se importa?</strong>&rdquo; &ndash; filme de Mara Mourão, com narração de Rodrigo Santoro:</p>
+
+<iframe id="ytplayer" type="text/html" src="https://www.youtube.com/embed/fSxrLFZ-VdU" frameborder="0" allowfullscreen></iframe>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Splendso.me - Um Projeto Open Source]]></title>
